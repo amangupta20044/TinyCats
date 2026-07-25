@@ -15,7 +15,8 @@ export const testMcpController = async (req: Request, res: Response) => {
     },
   });
 
-  let catsData = result.content[0].text;
+  const content = (result as { content?: Array<{ text: string }> }).content;
+  const catsData = content?.[0]?.text ?? "";
 
   let prompt = `
   
