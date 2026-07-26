@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import express from "express";
+import express, { type Request, type Response } from "express";
 import cors from "cors";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -13,11 +13,11 @@ import {
 } from "./tools/recommendCats.tool.js";
 
 // Process Error Handling
-process.on("unhandledRejection", (reason, promise) => {
+process.on("unhandledRejection", (reason: unknown, promise: Promise<unknown>) => {
   console.error("[MCP Error] Unhandled Promise Rejection at:", promise, "reason:", reason);
 });
 
-process.on("uncaughtException", (error) => {
+process.on("uncaughtException", (error: Error) => {
   console.error("[MCP Error] Uncaught Exception thrown:", error);
 });
 
@@ -37,7 +37,7 @@ server.registerTool(
       apartmentFriendly: z.boolean(),
     },
   },
-  async ({ kidsFriendly, apartmentFriendly }) => {
+  async ({ kidsFriendly, apartmentFriendly }: { kidsFriendly: boolean; apartmentFriendly: boolean }) => {
     const result = await recommendCatsTool(kidsFriendly, apartmentFriendly);
     return {
       content: [
@@ -86,7 +86,7 @@ if (transportMode === "stdio") {
   const sseTransports = new Map<string, SSEServerTransport>();
 
   // Health check endpoint for Render monitoring
-  app.get("/health", (_req, res) => {
+  app.get("/health", (_req: Request, res: Response) => {
     res.status(200).json({
       status: "online",
       server: "tiny-cats-mcp",
@@ -96,7 +96,7 @@ if (transportMode === "stdio") {
   });
 
   // SSE endpoint for client connection initiation
-  app.get("/sse", async (req, res) => {
+  app.get("/sse", async (req: Request, res: Response) => {
     console.log("[MCP SSE] New SSE client connection initiated.");
     const transport = new SSEServerTransport("/messages", res);
     sseTransports.set(transport.sessionId, transport);
@@ -110,7 +110,7 @@ if (transportMode === "stdio") {
   });
 
   // POST endpoint for message handling
-  app.post("/messages", async (req, res) => {
+  app.post("/messages", async (req: Request, res: Response) => {
     const sessionId = req.query.sessionId as string;
     const transport = sseTransports.get(sessionId);
 

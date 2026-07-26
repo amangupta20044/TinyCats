@@ -10,7 +10,7 @@ const getBackendApiUrl = (): string => {
 export const recommendCatsTool = async (
   kidsFriendly: boolean,
   apartmentFriendly: boolean
-) => {
+): Promise<unknown> => {
   const baseUrl = getBackendApiUrl();
   const res = await axios.post(`${baseUrl}/cats/recommend`, {
     kidsFriendly,
@@ -20,7 +20,7 @@ export const recommendCatsTool = async (
   return res.data;
 };
 
-export const getAllCatsTool = async () => {
+export const getAllCatsTool = async (): Promise<unknown> => {
   const baseUrl = getBackendApiUrl();
   const res = await axios.get(`${baseUrl}/cats`);
 
