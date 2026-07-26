@@ -9,6 +9,7 @@ const Home = lazy(() => import('../pages/Home').then((m) => ({ default: m.Home }
 const ExploreCats = lazy(() => import('../pages/ExploreCats').then((m) => ({ default: m.ExploreCats })));
 const CatDetails = lazy(() => import('../pages/CatDetails').then((m) => ({ default: m.CatDetails })));
 const Recommendation = lazy(() => import('../pages/Recommendation').then((m) => ({ default: m.Recommendation })));
+const Architecture = lazy(() => import('../pages/Architecture').then((m) => ({ default: m.ArchitecturePage })));
 const AddCat = lazy(() => import('../pages/AddCat').then((m) => ({ default: m.AddCat })));
 const NotFound = lazy(() => import('../pages/NotFound').then((m) => ({ default: m.NotFound })));
 
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <Recommendation />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'architecture',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Architecture />
           </Suspense>
         ),
       },

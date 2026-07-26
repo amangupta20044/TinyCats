@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Sun, Moon, Menu, Heart, Compass, Sparkles, PlusCircle, Home } from 'lucide-react';
+import { Sun, Moon, Menu, Heart, Compass, Sparkles, PlusCircle, Home, Cpu } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
 import { useFavorites } from '../../hooks/useFavorites';
 import { Button } from '../ui/Button';
@@ -14,7 +14,8 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { label: 'Home', path: '/', icon: Home },
     { label: 'Explore', path: '/explore', icon: Compass },
-    { label: 'Recommend', path: '/recommend', icon: Sparkles },
+    { label: 'AI Recommender', path: '/recommend', icon: Sparkles },
+    { label: 'Architecture', path: '/architecture', icon: Cpu },
     { label: 'Add Cat', path: '/add-cat', icon: PlusCircle },
   ];
 

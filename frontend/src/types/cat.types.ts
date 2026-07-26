@@ -32,3 +32,25 @@ export interface CatFilterOptions {
   energyLevel: string;
   sortBy: 'name-asc' | 'name-desc' | 'energy-high' | 'lifespan-high';
 }
+
+export interface EnrichedRecommendation {
+  cat: Cat;
+  confidenceScore: number;
+  reasoning: string;
+  suitableFor: string[];
+  notSuitableFor: string[];
+  lifestyleMatchScore: number;
+}
+
+export interface DeveloperDebugInfo {
+  timestamp: string;
+  endpoint: string;
+  mcpEndpoint: string;
+  toolUsed: string;
+  executionTimeMs: number;
+  tokenCount: number;
+  promptSent: string;
+  rawGeminiResponse: string;
+  parsedResponse: Record<string, unknown>;
+  requestParams: RecommendationParams;
+}
