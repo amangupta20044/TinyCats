@@ -1,18 +1,24 @@
 import axios, { AxiosError, type InternalAxiosRequestConfig, type AxiosResponse } from 'axios';
-import { API_BASE_URL } from '../constants';
 
-export const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+/**
+ * Reusable production-ready Axios instance for Tiny Cats API.
+ * Uses environment variable VITE_API_URL with Render backend URL fallback.
+ */
+export const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'https://backend-1b2o.onrender.com/api',
   timeout: 10000,
+  withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
+// Alias export for backwards compatibility
+export const apiClient = api;
+
 // Request Interceptor
-apiClient.interceptors.request.use(
+api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // We can add auth headers or request tracking here if needed in the future
     return config;
   },
   (error: AxiosError) => {
@@ -21,7 +27,7 @@ apiClient.interceptors.request.use(
 );
 
 // Response Interceptor
-apiClient.interceptors.response.use(
+api.interceptors.response.use(
   (response: AxiosResponse) => {
     return response;
   },
@@ -33,7 +39,7 @@ apiClient.interceptors.response.use(
       const data = error.response.data as { message?: string };
       errorMessage = data?.message || `Server returned error (${error.response.status})`;
     } else if (error.request) {
-      // Request made but no response received (Backend offline or timeout)
+      // Request made but no response received (Backend spinning up or unreachable)
       errorMessage = 'Unable to reach Tiny Cats backend server. Operating in fallback mode.';
     } else {
       errorMessage = error.message || errorMessage;

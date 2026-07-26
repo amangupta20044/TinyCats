@@ -1,4 +1,4 @@
-import { apiClient } from './api';
+import { api } from './api';
 import type { Cat, CreateCatPayload, RecommendationParams } from '../types/cat.types';
 import type { ApiResponse } from '../types/api.types';
 import { SAMPLE_CATS_FALLBACK } from '../constants';
@@ -9,13 +9,13 @@ export const catService = {
    */
   async getAllCats(): Promise<Cat[]> {
     try {
-      const response = await apiClient.get<ApiResponse<Cat[]>>('/cats');
+      const response = await api.get<ApiResponse<Cat[]>>('/cats');
       if (response.data && Array.isArray(response.data.data) && response.data.data.length > 0) {
         return response.data.data;
       }
       return SAMPLE_CATS_FALLBACK;
     } catch (error) {
-      console.warn('Backend unavailable, using fallback cat data for UI preview:', error);
+      console.warn('Backend unavailable or initializing, using fallback cat data for UI preview:', error);
       return SAMPLE_CATS_FALLBACK;
     }
   },
@@ -25,7 +25,7 @@ export const catService = {
    */
   async getCatById(id: string): Promise<Cat> {
     try {
-      const response = await apiClient.get<ApiResponse<Cat>>(`/cats/${id}`);
+      const response = await api.get<ApiResponse<Cat>>(`/cats/${id}`);
       if (response.data && response.data.data) {
         return response.data.data;
       }
@@ -43,7 +43,7 @@ export const catService = {
   async searchCats(query: string): Promise<Cat[]> {
     if (!query.trim()) return this.getAllCats();
     try {
-      const response = await apiClient.get<ApiResponse<Cat[]>>(`/cats/search/all?q=${encodeURIComponent(query)}`);
+      const response = await api.get<ApiResponse<Cat[]>>(`/cats/search/all?q=${encodeURIComponent(query)}`);
       if (response.data && Array.isArray(response.data.data)) {
         return response.data.data;
       }
@@ -61,7 +61,7 @@ export const catService = {
    */
   async createCat(payload: CreateCatPayload): Promise<Cat> {
     try {
-      const response = await apiClient.post<ApiResponse<Cat>>('/cats/create', payload);
+      const response = await api.post<ApiResponse<Cat>>('/cats/create', payload);
       return response.data.data;
     } catch (error) {
       console.warn('Failed to post cat to backend server, returning mocked response:', error);
@@ -82,7 +82,7 @@ export const catService = {
    */
   async recommendCats(params: RecommendationParams): Promise<Cat[]> {
     try {
-      const response = await apiClient.post<ApiResponse<Cat[]>>('/cats/recommend', {
+      const response = await api.post<ApiResponse<Cat[]>>('/cats/recommend', {
         kidsFriendly: params.kidsFriendly,
         apartmentFriendly: params.apartmentFriendly,
       });
@@ -104,7 +104,7 @@ export const catService = {
    */
   async recommendByAi(params: RecommendationParams): Promise<Cat[]> {
     try {
-      const response = await apiClient.post<ApiResponse<Cat[]>>('/aiRecommend/recommendByAi', {
+      const response = await api.post<ApiResponse<Cat[]>>('/aiRecommend/recommendByAi', {
         kidsFriendly: params.kidsFriendly,
         apartmentFriendly: params.apartmentFriendly,
         energyPreference: params.energyPreference,
