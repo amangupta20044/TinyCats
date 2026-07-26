@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
-import { getMcpClient } from "../services/mcp.service.ts";
-import { generateAiResponse } from "../services/gemini.service.ts";
+import { getMcpClient } from "../services/mcp.service.js";
+import { generateAiResponse } from "../services/gemini.service.js";
 
 export const testMcpController = async (req: Request, res: Response) => {
   const client = await getMcpClient();

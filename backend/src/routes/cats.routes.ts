@@ -1,5 +1,5 @@
-import express from "express"
-import { createCatController, getAllCatsController, getSingleCatController, recommendCatsController, searchCatController } from "../controller/cat.controller.ts";
+import express from "express";
+import { createCatController, getAllCatsController, getSingleCatController, recommendCatsController, searchCatController } from "../controller/cat.controller.js";
 
 const router = express.Router();
 

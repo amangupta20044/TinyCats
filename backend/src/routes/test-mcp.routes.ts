@@ -1,5 +1,5 @@
 import express from "express";
-import { testMcpController } from "../controller/test-mcp.controller.ts";
+import { testMcpController } from "../controller/test-mcp.controller.js";
 
 const router = express.Router();
 

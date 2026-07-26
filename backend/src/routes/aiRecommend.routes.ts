@@ -1,5 +1,5 @@
 import express from "express";
-import { aiRecommendController } from "../controller/aiRecommend.controller.ts";
+import { aiRecommendController } from "../controller/aiRecommend.controller.js";
 
 const router = express.Router();
 

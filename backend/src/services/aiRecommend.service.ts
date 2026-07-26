@@ -1,5 +1,5 @@
-import { recommendService } from "./cat.service.ts";
-import { generateAiResponse } from "./gemini.service.ts";
+import { recommendService } from "./cat.service.js";
+import { generateAiResponse } from "./gemini.service.js";
 
 export const aiRecommendService = async (
   kidsFriendly: boolean,

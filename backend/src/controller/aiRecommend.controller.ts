@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { aiRecommendService } from "../services/aiRecommend.service.ts";
+import { aiRecommendService } from "../services/aiRecommend.service.js";
 
 export const aiRecommendController = async (req: Request, res: Response) => {
   const { kidsFriendly, apartmentFriendly } = req.body;

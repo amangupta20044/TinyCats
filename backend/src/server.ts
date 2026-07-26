@@ -1,11 +1,11 @@
-import dotenv from "dotenv"
-dotenv.config()
-import app from "./app.ts"
-import { connectDb } from "./config/db.ts";
+import dotenv from "dotenv";
+dotenv.config();
+import app from "./app.js";
+import { connectDb } from "./config/db.js";
 
-connectDb()
+connectDb();
 
-let port= process.env.PORT;
-app.listen(port,()=>{
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
     console.log(`server is running on ${port}`);
-})
+});

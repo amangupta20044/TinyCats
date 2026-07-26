@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { createCatService, getAllCatsService, getSingleCatService, recommendService, searchCatsService } from "../services/cat.service.ts"
+import { createCatService, getAllCatsService, getSingleCatService, recommendService, searchCatsService } from "../services/cat.service.js";
 
 
 export const createCatController = async(req:Request,res:Response)=>{

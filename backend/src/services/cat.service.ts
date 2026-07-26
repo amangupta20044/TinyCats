@@ -1,4 +1,4 @@
-import CatModel from "../models/cat.model.ts";
+import CatModel from "../models/cat.model.js";
 
 export const createCatService = async(payload:object)=>{
     return await CatModel.create(payload)

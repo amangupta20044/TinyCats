@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { generateAiResponse } from "../services/gemini.service.ts";
+import { generateAiResponse } from "../services/gemini.service.js";
 
 export const askAiController = async (req: Request, res: Response) => {
   let prompt = req.body.prompt;

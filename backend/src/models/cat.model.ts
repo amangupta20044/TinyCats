@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import type { ICat } from "../types/cats.types.ts";
+import type { ICat } from "../types/cats.types.js";
 
 let catSchema = new mongoose.Schema<ICat>(
   {

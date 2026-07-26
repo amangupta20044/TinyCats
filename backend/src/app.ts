@@ -1,8 +1,8 @@
 import express, { type Request, type Response } from 'express';
-import catsRoute from "./routes/cats.routes.ts"
-import aiRoute from "./routes/ai.routes.ts"
-import aiRecommendRoutes from './routes/aiRecommend.routes.ts';
-import mcpRoutes from './routes/test-mcp.routes.ts';
+import catsRoute from "./routes/cats.routes.js";
+import aiRoute from "./routes/ai.routes.js";
+import aiRecommendRoutes from './routes/aiRecommend.routes.js';
+import mcpRoutes from './routes/test-mcp.routes.js';
 const app=express();
 app.use(express.json())
 
