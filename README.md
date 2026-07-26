@@ -38,7 +38,7 @@
 ## 📋 Table of Contents
 
 - [✨ Key Features](#-key-features)
-- [🌐 Live Demo](#-live-demo)
+- [🌐 Live Demo](https://tiny-cats-kohl.vercel.app/)
 - [🖼️ Application Showcase & Screenshots](#️-application-showcase--screenshots)
 - [🏗️ System Architecture](#️-system-architecture)
 - [📁 Folder Structure](#-folder-structure)
@@ -72,7 +72,7 @@
 
 | Service | Live URL | Status |
 | :--- | :--- | :--- |
-| **Frontend Web App** | [https://tinycats.vercel.app](https://tinycats.vercel.app) *(Placeholder)* | 🟢 Production |
+| **Frontend Web App** | [https://tiny-cats-kohl.vercel.app/](https://tinycats.vercel.app) *(Placeholder)* | 🟢 Production |
 | **Backend REST API** | [https://api-tinycats.render.com/api](https://api-tinycats.render.com/api) *(Placeholder)* | 🟢 Active |
 
 ---
